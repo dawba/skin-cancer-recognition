@@ -52,8 +52,8 @@ def load_data(folder1, folder2, destination_folder, metadata_file, image_dimensi
 
     Parameters:
     - folder1: Path to the first folder of images.
-    - folder2: Path to the second folder of images.
-    - destination_folder: Path to the destination folder where merged images will be stored.
+    - folder2: Path to the second folder of images. <- Not required
+    - augmented_images: Path to the destination folder where merged images will be stored.
     - metadata_file: Path to the metadata CSV file containing image labels.
     - num_samples: Number of samples per class to include in the dataset (optional).
 
@@ -85,8 +85,12 @@ def load_data(folder1, folder2, destination_folder, metadata_file, image_dimensi
     #     # Filter metadata to include only selected image IDs
     #     metadata = metadata[metadata['image_id'].isin(selected_image_ids)]
 
-    # Merge two folders from the original format
-    for folder in [folder1, folder2]:
+    folders = [folder1]
+
+    if folder2:
+        folders.append(folder2)
+
+    for folder in folders:
         for filename in os.listdir(folder):
             source = os.path.join(folder, filename)
             destination = os.path.join(destination_folder, filename)

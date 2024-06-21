@@ -72,6 +72,3 @@ class ModelBuilder:
         model.compile(optimizer=optimizer, loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
         return model
-
-
-model_builder = ModelBuilder()

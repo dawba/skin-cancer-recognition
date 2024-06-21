@@ -1,6 +1,7 @@
 import numpy as np
-from scripts.combine_inputs import combine_inputs
+from scripts.utils.combine_inputs import combine_inputs
 from sklearn.metrics import accuracy_score, classification_report
+
 
 def eval_model(model, test_images, test_metadata, test_labels):
     """
@@ -36,9 +37,3 @@ def eval_model(model, test_images, test_metadata, test_labels):
     print(class_report)
 
     return predicted_labels, predictions, accuracy
-
-
-test_images, test_metadata = test_X
-test_labels, _ = encode_metadata(test_metadata, encoder=encoder, fit=False)
-
-predicted_labels, predictions, accuracy = eval_model(best_model, test_images, test_labels, test_Y)

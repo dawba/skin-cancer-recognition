@@ -1,0 +1,4 @@
+lesion_id,image_id,dx,dx_type,age,sex,localization
+HAM_0002459,ISIC_0029305,nv,follow_up,40.0,male,trunk
+HAM_0004884,ISIC_0032128,bkl,histo,75.0,male,upper extremity
+HAM_0002671,ISIC_0033068,mel,histo,80.0,male,upper extremity

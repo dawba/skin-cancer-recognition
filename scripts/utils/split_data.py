@@ -1,4 +1,4 @@
-from scripts.preprocess_data import lesion_type_dict
+from scripts.utils.preprocess_data import lesion_type_dict
 import numpy as np
 
 def split_X(images, metadata, validation_split=0.2):

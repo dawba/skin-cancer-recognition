@@ -15,7 +15,6 @@ lesion_type_dict = {
     6: {'code': 'df', 'name': 'Dermatofibroma'}
 }
 
-
 def augment_images(images, metadata, augmented_folder, batch_size=2, target_size=(28, 28)):
     """
     Augment images by applying various transformations and save them to a folder.
@@ -96,7 +95,6 @@ def augment_images(images, metadata, augmented_folder, batch_size=2, target_size
     print('Augmented!')
     return all_images, all_metadata
 
-
 def sanitize_data(metadata):
     """
     Clean metadata by filling missing values and drop redundant columns.
@@ -129,13 +127,16 @@ def sanitize_data(metadata):
     return metadata
 
 
-def preprocess_data(images, metadata, augmented_folder):
+def preprocess_data(images, metadata, augmented_folder=None, augmentation=True, target_size=(28, 28)):
     """
     Arranges preprocess steps into a pipeline.
 
     Parameters:
     - images: NumPy array of images to be preprocessed.
     - metadata: DataFrame containing metadata of the images.
+    - augmented_folder: Path to the folder for augmented images.
+    - augmentation: Boolean flag to indicate if augmentation should be performed.
+    - target_size: Tuple indicating the desired size of the images.
 
     Returns:
     - images: NumPy array of preprocessed images.
@@ -143,8 +144,15 @@ def preprocess_data(images, metadata, augmented_folder):
     """
     print('Preprocessing data...')
 
-    images, metadata = augment_images(images, metadata, augmented_folder)
+    if augmentation and augmented_folder:
+        images, metadata = augment_images(images, metadata, augmented_folder, target_size=target_size)
+    else:
+        # Resize images without augmentation
+        resized_images = np.array([resize(image, target_size).numpy().astype(np.uint8) for image in images])
+        images = resized_images
+
     metadata = sanitize_data(metadata)
 
     print('Preprocessed!')
     return images, metadata
+

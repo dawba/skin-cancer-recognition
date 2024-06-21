@@ -1,12 +1,12 @@
-from scripts.encode_metadata import encode_metadata
-from scripts.load_data import load_data
+from scripts.utils.encode_metadata import encode_metadata
+from scripts.utils.load_data import load_data
 from scripts.model.build_model import ModelBuilder
-from scripts.preprocess_data import preprocess_data
-from scripts.split_data import split_data
+from scripts.utils.preprocess_data import preprocess_data
+from scripts.utils.split_data import split_data
 from scripts.model.neural_network_cnn import NeuralNetworkCNN
 from scripts.model.eval_model import eval_model
 from scripts.model.train_model import train_model
-from scripts.plot_results import plot_results
+from scripts.utils.plot_results import plot_results
 
 folder1 = '../data/HAM10000/HAM10000_images_part_1'
 folder2 = '../data/HAM10000/HAM10000_images_part_2'
